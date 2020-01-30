@@ -1,0 +1,13 @@
+bash: cd: test/: Permission non accordée
+
+/*int setenv(void)
+{}
+
+int unsetenv(void)
+{}
+
+int env(void)
+{}
+
+int exit(void)
+{}*/
