@@ -58,5 +58,6 @@ int menv(char **splitted, char *envp[])
 
 int mexit(char **splitted, char *envp[])
 {
+    myputstr("exit", 0);
     exit(0);
 }

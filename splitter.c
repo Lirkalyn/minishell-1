@@ -46,11 +46,10 @@ char **spliter2(char **rsl , char *str)
     for (i = 0; str[i] != ' ' && str[i] != '\0' && str[i] != '\n'; i++)
         tmp[0][pos++] = str[i];
     pos = 0;
-    for (j = (i + 1); str[j] != ' ' && str[j] != '\0' && str[j] != '\n'; j++)
-        if (str[j] == '-')
-            bool = 1;
-        else if (bool == 1)
-            tmp[1][pos++] = str[j];
+    for (j = (i + 1); str[j] != ' ' && str[j] != '\0' && str[j] != '\n'; j++) {
+        bool = (str[j] == '-') ? 1 : bool;
+        tmp[1][pos++] = str[j];
+    }
     j = (bool == 0) ? i : j;
     pos = 0;
     for (k = (j + 1); str[k] != ' ' && str[k] != '\0' && str[k] != '\n'; k++)
@@ -81,7 +80,7 @@ char **spliter(char *str, char **splitterd)
     rsl[0] = (char *)malloc((i + 1) * sizeof(char));
     for (j = (i + 1); str[j] != ' ' && str[j] != '\0' && str[j] != '\n'; j++) {
         bool += (str[j] == '-') ? 1 : 0;
-        len += (bool == 1) ? 1 : 0;
+        len += 1;
     }
     rsl[1] = (char *)malloc((len + 1) * sizeof(char));
     for (k = (bool == 0) ? (i + 1) : (j + 1); (str[k] != ' ' && str[k] != '\0'

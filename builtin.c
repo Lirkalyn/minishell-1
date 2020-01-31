@@ -26,14 +26,8 @@ int cd_checker(char *pathname)
 
     if (access(pathname, F_OK) != 0)
         test += 1;
-    else {
-/*        if (access(pathname, R_OK) != 0)
+    else if (access(pathname, X_OK) != 0)
             test += 1;
-        if (access(pathname, W_OK) != 0)
-            test += 1;*/
-        if (access(pathname, X_OK) != 0)
-            test += 1;
-    }
     return test;
 }
 

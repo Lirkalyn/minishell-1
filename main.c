@@ -50,6 +50,8 @@ int choice(char **envp[], char **splitted, char **arg)
             return menv(splitted, *envp);
         case 4:
             return mexit(splitted, *envp);
+        case 50:
+            return prefork(*envp, splitted, arg);
         default:
         break;
     }
@@ -69,26 +71,5 @@ int main(int argc, char *argv[], char *envp[])
         arg = my_str_to_word_array(line);
         splitted = spliter(line, splitted);
         choice(&envp, splitted, arg);
-//        test = choose(split[0]);
-/*        if (test == 0)
-            cd(split, envp);
-        else if (test == 1)
-            if (split[2][0] == '\0')
-                menv(split, envp);
-            else
-                msetenv(split, &envp, arg);
-        else if (test == 2)
-            munsetenv(split, &envp);
-        else if (test == 3)
-            menv(split, envp);
-        else if (test == 4)
-            mexit(split, envp);*/
-    /*    printf("%s\n", split[0]);
-        printf("%s\n", split[1]);
-        printf("%s\n", split[2]);*/
-        //printf("iii = %d\n", choose(split[0]));
-    //    access(const char *pathname, int mode);
-    /*    for (int i = 0; envp[i] != NULL; i++)
-            printf("%s\n", envp[i]);*/
     }
 }

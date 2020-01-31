@@ -11,7 +11,9 @@ SRC	=	main.c \
 		builtin.c \
 		builtin2.c \
 		splitter.c \
-		my_str_to_word_array.c
+		my_str_to_word_array.c \
+		child.c \
+		child2.c
 
 OBJ	=	$(SRC:.c=.o)
 
