@@ -10,21 +10,22 @@
 #include <unistd.h>
 #include "my.h"
 
-char **copy(char *envp[])
+char **copy(char *envp[], int add, int *pos)
 {
     int i = 0;
     int len = 0;
     char **rsl;
 
     for (len = 0; envp[len] != NULL; len++);
-    rsl = (char **)malloc((len + 1) * sizeof(char *));
+    rsl = (char **)malloc((len + add) * sizeof(char *));
     if (rsl == NULL)
         return NULL;
-    rsl[len] = NULL;
+    *pos = len;
+    rsl[len + (add - 1)] = NULL;
     for (i = 0; envp[i] != NULL; i++) {
         for (len = 0; envp[i][len] != '\0'; len++);
         rsl[i] = (char *)malloc((len + 1) * sizeof(char));
-        if (rsl == NULL)
+        if (rsl[i] == NULL)
             return NULL;
         rsl[i][len] = '\0';
         for (int j = 0; envp[i][j] != '\0'; rsl[i][j] = envp[i][j], j++);
@@ -34,20 +35,20 @@ char **copy(char *envp[])
 
 int main(int argc, char *argv[], char *envp[])
 {
-    //char **env2 = copy(envp);
     char *li/*ne*/ = NULL;
     size_t si/*ze*/;
-    char **splited = (char **)malloc(3 * sizeof(char *));
+    char **split = (char **)malloc(3 * sizeof(char *));
 
-    if (/*env2 == NULL || */myputstr("$>", 1) || (getline(&li, &si, stdin) == -1) || splited == NULL)
+    if (myputstr("$>", 1) || (getline(&li, &si, stdin) == -1) || split == NULL)
         return 84;
-    splited = spliter(li, splited);
-    choose(splited[0]);
-    cd(splited);
-/*    printf("%s\n", splited[0]);
-    printf("%s\n", splited[1]);
-    printf("%s\n", splited[2]);*/
-    //printf("iii = %d\n", choose(splited[0]));
+    split = spliter(li, split);
+    choose(split[0]);
+    //cd(split, envp);
+    //msetenv(split, &envp, li);
+/*    printf("%s\n", split[0]);
+    printf("%s\n", split[1]);
+    printf("%s\n", split[2]);*/
+    //printf("iii = %d\n", choose(split[0]));
 //    access(const char *pathname, int mode);
 /*    for (int i = 0; envp[i] != NULL; i++)
         printf("%s\n", envp[i]);*/

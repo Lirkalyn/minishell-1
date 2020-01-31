@@ -17,6 +17,10 @@ int cd_checker(char *pathname);
 int choose(char *line);
 int lenght(char *str);
 char **spliter(char *str, char **splitterd);
-int cd(char **splitted);
+int cd(char **splitted, char *envp[]);
+int msetenv(char **splitted, char **envp[], char *li);
+char **copy(char *envp[], int add, int *pos);
+char **my_str_to_word_array(char const *str);
+int my_strcmp(char const *s1, char const *s2);
 
 #endif

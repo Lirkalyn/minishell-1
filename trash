@@ -11,3 +11,7 @@ int env(void)
 
 int exit(void)
 {}*/
+
+
+//    start = getcwd(NULL, 0);
+//    printf("2 = %s\n", start);

@@ -9,7 +9,9 @@
 SRC	=	main.c \
 		display.c \
 		builtin.c \
-		splitter.c
+		builtin2.c \
+		splitter.c \
+		my_str_to_word_array.c
 
 OBJ	=	$(SRC:.c=.o)
 
