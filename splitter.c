@@ -25,6 +25,8 @@ int choose(char *line)
 
     for (int i = 0; i < 5; i++) {
         for (int j = 0, ok = 0; test[i][j] != '\0' && line[j] != '\0'; j++) {
+            if (test[i][(j + 1)] == '\0' && line[(j + 1)] != '\0')
+                ok += 1;
             if (test[i][j] != line[j])
                 ok += 1;
             else if ((ok == 0) && (j == lenght(test[i])))

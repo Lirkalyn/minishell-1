@@ -81,8 +81,8 @@ int prefork(char *envp[], char **splitted, char **arg)
         return forking(splitted, arg_checker(splitted), path, envp);
     }
     else {
-        myputstr(splitted[0], 2);
-        myputstr(": Command not found.", 0);
+        my_puterror(splitted[0], 2);
+        my_puterror(": Command not found.", 0);
         return 1;
     }
 }
