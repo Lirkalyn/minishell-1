@@ -57,6 +57,25 @@ int choice(char **envp[], char **splitted, char **arg)
     }
 }
 
+char *line_cleaner(char *tmp)
+{
+    for (int i = 0; tmp[i] != '\0'; i++) {
+        if (tmp[i] == ' ' && tmp[(i - 1)] == ' ') {
+            for (int j = i; tmp[j] != '\0'; tmp[j] = tmp[(j + 1)], j++);
+            i -= 1;
+        }
+        if (tmp[i] == '\t' && tmp[(i - 1)] != ' ' && tmp[(i + 1)] != ' ') {
+            tmp[i] = ' ';
+            i -= 1;
+        }
+        if (tmp[i] == '\t' && tmp[(i - 1)] == ' ') {
+            for (int j = i; tmp[j] != '\0'; tmp[j] = tmp[(j + 1)], j++);
+            i -= 1;
+        }
+    }
+    return tmp;
+}
+
 int main(int argc, char *argv[], char *envp[])
 {
     char *line = NULL;
@@ -67,6 +86,9 @@ int main(int argc, char *argv[], char *envp[])
     while (1) {
         myputstr("$>", 1);
         if ((getline(&line, &size, stdin) == -1) || splitted == NULL)
+            return 84;
+        line = line_cleaner(line);
+        if (line == NULL)
             return 84;
         arg = my_str_to_word_array(line);
         splitted = spliter(line, splitted);

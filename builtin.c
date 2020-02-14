@@ -78,7 +78,7 @@ char *cd2(char **splitted, char *envp[])
     return rsl;
 }
 
-int cd(char **splitted, char *envp[])
+int  cd(char **splitted, char *envp[])
 {
     char *path = NULL;
     char *tmp = NULL;
@@ -90,9 +90,9 @@ int cd(char **splitted, char *envp[])
             path = pathmaker(getcwd(NULL, 0), splitted[2]);
         tmp = splitted[2];
         splitted[2] = path;
+        if (path == NULL)
+            return 84;
     }
-    if (path == NULL)
-        return 84;
     if (cd_checker(splitted[2]) == 0)
         return chdir(splitted[2]);
     else if (cd_checker(splitted[2]) != 0) {
