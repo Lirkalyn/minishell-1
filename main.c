@@ -62,15 +62,15 @@ char *line_cleaner(char *tmp)
     for (int i = 0; tmp[i] != '\0'; i++) {
         if (tmp[i] == ' ' && tmp[(i - 1)] == ' ') {
             for (int j = i; tmp[j] != '\0'; tmp[j] = tmp[(j + 1)], j++);
-            i -= 1;
+            i -= 2;
         }
         if (tmp[i] == '\t' && tmp[(i - 1)] != ' ' && tmp[(i + 1)] != ' ') {
             tmp[i] = ' ';
-            i -= 1;
+            i -= 2;
         }
         if (tmp[i] == '\t' && tmp[(i - 1)] == ' ') {
             for (int j = i; tmp[j] != '\0'; tmp[j] = tmp[(j + 1)], j++);
-            i -= 1;
+            i -= 2;
         }
     }
     return tmp;

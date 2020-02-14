@@ -78,7 +78,7 @@ char *cd2(char **splitted, char *envp[])
     return rsl;
 }
 
-int  cd(char **splitted, char *envp[])
+int cd(char **splitted, char *envp[])
 {
     char *path = NULL;
     char *tmp = NULL;
