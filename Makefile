@@ -20,7 +20,7 @@ OBJ	=	$(SRC:.c=.o)
 NAME	=	mysh
 
 $(NAME):	$(OBJ)
-		gcc -o $(NAME) $(SRC)
+		gcc -g -o $(NAME) $(SRC)
 
 clean:
 		rm -f $(OBJ)
